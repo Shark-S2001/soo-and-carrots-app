@@ -9,6 +9,8 @@ export const theme = {
     secondary: '#414757',
     error: '#f13a59',
     cardcolor: '#253bff',
-    cardtextcolor: '#ffffff'
+    cardtextcolor: '#ffffff',
+    registerbutton: "#253bff",
+    loginbutton: "#1c2839"
   },
 }

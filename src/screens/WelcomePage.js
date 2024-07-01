@@ -3,7 +3,6 @@ import { View, StyleSheet } from 'react-native'
 import LoginBackground from '../components/LoginBackground'
 import Header from '../components/Header'
 import Button from '../components/Button'
-import Paragraph from '../components/Paragraph'
 
 export default function WelcomePage({ navigation }) {
   return (
@@ -14,19 +13,21 @@ export default function WelcomePage({ navigation }) {
         </View>
         <View style={styles.footerContainer}>
           <Button
-            mode="outlined"
-            onPress={() => navigation.navigate('CreateAccountScreen')}
-            icon="arrow-right-circle"
-          >
-            Sign Up for free
-          </Button>
-          <Button
-            mode="contained"
-            onPress={() => navigation.navigate('LoginScreen')}
-            icon="email-outline"
+              mode="outlined"
+              onPress={() => navigation.navigate('CreateAccountScreen')}
+              leftIcon="arrow-collapse-right"
+              rightIcon="arrow-right-circle-outline"
             >
-            Continue with Email
-          </Button>
+              Sign Up for free
+            </Button>
+            <Button
+              mode="contained"
+              onPress={() => navigation.navigate('LoginScreen')}
+              leftIcon="email-outline"
+              rightIcon="arrow-right-circle-outline"
+            >
+              Continue with Email
+            </Button>
         </View>
       </View>
     </LoginBackground>

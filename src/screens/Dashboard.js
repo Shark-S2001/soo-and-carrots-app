@@ -30,8 +30,7 @@ export default function Dashboard({ navigation }) {
             index: 0,
             routes: [{ name: 'WelcomePage' }],
           })
-        }
-      >
+        }>
         Logout
       </Button>
       <WelcomeModal visible={modalVisible} onDismiss={() => setModalVisible(false)} />

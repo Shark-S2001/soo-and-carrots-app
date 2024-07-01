@@ -1,12 +1,12 @@
-import React from 'react'
-import { View, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
-import BackButton from '../components/BackButton'
-import Header from '../components/Header'
-import SearchBar from '../components/SearchBar'
-import { theme } from '../core/theme'
+import React, { useState } from 'react';
+import { View, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import BackButton from '../components/BackButton';
+import Header from '../components/Header';
+import SearchBar from '../components/SearchBar';
+import { theme } from '../core/theme';
 import { Appbar } from 'react-native-paper';
-import Background from '../components/Background'
+import Background from '../components/Background';
 
 const competitions = [
   {
@@ -16,43 +16,43 @@ const competitions = [
     location: 'PyeongChang, Gangwon-do, Korea'
   },
   {
-    title: '20th Asian Game - Achi Nagoya',
-    season: '2026 (Winter)', 
+    title: '21th China Game - China Nagoya',
+    season: '2026 (Autumm)', 
     dateRange: '2026-01-01 ~ 2026-01-31',
     location: 'PyeongChang, Gangwon-do, Korea'
   },
   {
-    title: '20th Asian Game - Achi Nagoya',
+    title: '22th Korean Game - Korean Nagoya',
+    season: '2026 (Summer)',
+    dateRange: '2026-01-01 ~ 2026-01-31',
+    location: 'PyeongChang, Gangwon-do, Korea'
+  },
+  {
+    title: '23th America Game - America Nagoya',
     season: '2026 (Winter)',
     dateRange: '2026-01-01 ~ 2026-01-31',
     location: 'PyeongChang, Gangwon-do, Korea'
   },
   {
-    title: '20th Asian Game - Achi Nagoya',
-    season: '2026 (Winter)',
-    dateRange: '2026-01-01 ~ 2026-01-31',
-    location: 'PyeongChang, Gangwon-do, Korea'
-  },
-  {
-    title: '20th Asian Game - Achi Nagoya',
+    title: '24th Indian Game - Indian Nagoya',
     season: '2026 (Winter)',
     dateRange: '2026-01-01 ~ 2026-01-31',
     location: 'PyeongChang, Gangwon-do, Korea'
   }
-]
+];
 
 const CompetitionsScreen = () => {
-  const [searchQuery, setSearchQuery] = React.useState('')
-  const navigation = useNavigation()
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const navigation = useNavigation();
 
   const filteredCompetitions = competitions.filter(competition =>
     competition.title.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  );
 
   return (
     <ScrollView style={styles.container}>
-       <Appbar.Header>
-        <Appbar.BackAction onPress={(goBack) => {}} />
+      <Appbar.Header>
+        <Appbar.BackAction onPress={() => navigation.goBack()} />
         <SearchBar value={searchQuery} onChangeText={setSearchQuery} />
       </Appbar.Header>
       <Background style={styles.container1}>
@@ -65,7 +65,7 @@ const CompetitionsScreen = () => {
             <TouchableOpacity
               key={index}
               style={styles.card}
-              onPress={() => navigation.navigate('CreateAccountScreen')}>
+              onPress={() => navigation.navigate('CreateAccountScreen', { competition: competition.title })}>
               <Text style={styles.cardTitle}>{competition.title}</Text>
               <Text style={styles.cardText}>{competition.season}</Text>
               <Text style={styles.cardText}>{competition.dateRange}</Text>
@@ -75,8 +75,8 @@ const CompetitionsScreen = () => {
         </ScrollView>
       </Background>
     </ScrollView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -122,6 +122,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: theme.colors.cardtextcolor,
   }
-})
+});
 
-export default CompetitionsScreen
+export default CompetitionsScreen;
