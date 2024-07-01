@@ -36,12 +36,12 @@ export default function CreateAccountScreen({ route, navigation }) {
     const competitionError = competitionValidator(competition);
     const nameError = nameValidator(name.value);
     const emailError = emailValidator(email.value);
-    const passwordError = passwordValidator(password.value);
+    const passwordError = validatePassword(password.value) ? '' : 'Password must be 8 characters long, include 3 uppercase letters, a lowercase letter, a number, and a special character.';
     const confirmPasswordError = password.value === confirmPassword.value ? '' : 'Passwords do not match.';
   
     if (nameError || emailError || confirmPasswordError) {
       // Handle setting errors
-      setCompetition(competitionError); // Assuming you have a state for competition error
+      setCompetition(competitionError); 
       setName({ ...name, error: nameError });
       setEmail({ ...email, error: emailError });
       setPassword({ ...password, error: passwordError });
@@ -71,6 +71,9 @@ export default function CreateAccountScreen({ route, navigation }) {
           returnKeyType="next"
           value={competition}
           onFocus={() => navigation.navigate('CompetitionsScreen')}
+          onChangeText={(text) => setCompetition({ value: text, error: competition.error })}
+          error={!!competition.error}
+          errorText={competition.error}
         />
         <TextInput
           label="Email *"
